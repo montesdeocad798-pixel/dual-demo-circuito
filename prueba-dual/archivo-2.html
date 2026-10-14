@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corte Fino · Peluquería en Madrid</title>
+
+    <!-- Google Fonts opcional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== Reset básico ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
+            background-color: #F9F9F9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Compensar el header fijo al saltar a las secciones */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* ===== Contenedor general ===== */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ===== Header ===== */
+        header {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #E67E22;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ddd;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #E67E22;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            color: #fff;
+            text-align: center;
+            padding: 4.5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 span {
+            color: #E67E22;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #d5dbdb;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #B35A14; /* contraste AA con texto blanco */
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(179, 90, 20, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #9E4A0F;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Secciones genéricas ===== */
+        section {
+            padding: 3.5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #E67E22;
+            margin: 0.6rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== Servicios (4 columnas en desktop) ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #E67E22;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card h3 {
+            color: #2C3E50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #B35A14; /* contraste AA sobre blanco */
+        }
+
+        /* ===== Horario ===== */
+        .horario-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .horario-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .horario-table th,
+        .horario-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .horario-table th {
+            background-color: #2C3E50;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .horario-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .horario-table td {
+            font-weight: 400;
+        }
+
+        .horario-table .cerrado {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+
+        .horario-table .hora {
+            font-weight: 500;
+            color: #2C3E50;
+        }
+
+        /* ===== Reserva ===== */
+        .reserva-section {
+            background: linear-gradient(135deg, #f5f0e8 0%, #F9F9F9 100%);
+            text-align: center;
+        }
+
+        .reserva-section p {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background-color: #128C4A; /* verde más oscuro: contraste AA con blanco */
+            color: #fff;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(18, 140, 74, 0.4);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #0E6F3B;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp .whatsapp-icon {
+            font-size: 1.5rem;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: #2C3E50;
+            color: #ccc;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+
+        footer .footer-contact a {
+            color: #E67E22;
+            font-weight: 500;
+        }
+
+        footer .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-legal {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* ===== Media Queries ===== */
+
+        /* Tablets y móviles grandes: ajustes de layout generales */
+        @media (max-width: 768px) {
+            .container {
+                width: 92%;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+        }
+
+        /* Móvil: 2 columnas de servicios SOLO si el ancho es menor de 600px */
+        @media (max-width: 599px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        /* Móvil pequeño: tipografía y espaciados */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .service-card {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .service-card .icon {
+                font-size: 2rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .service-card .price {
+                font-size: 1.2rem;
+            }
+
+            .horario-table th,
+            .horario-table td {
+                padding: 0.8rem 1rem;
+            }
+
+            .btn-whatsapp {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Respetar usuarios que prefieren menos movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Header ===== -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Corte<span>Fino</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#horario">Horario</a></li>
+                    <li><a href="#reserva">Reserva</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Bienvenido a <span>Corte Fino</span></h1>
+            <p>Tu peluquería de confianza en Madrid. Estilo, calidad y buen trato en el corazón de la ciudad.</p>
+            <!-- NÚMERO DE WHATSAPP: si cambias el número, actualiza también el enlace en #reserva -->
+            <a href="https://wa.me/34000000000?text=Hola%20Corte%20Fino%2C%20quiero%20reservar" class="btn">Reserva ahora</a>
+        </div>
+    </section>
+
+    <!-- ===== Servicios ===== -->
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Servicios y precios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">✂️</div>
+                    <h3>Corte de pelo</h3>
+                    <p>Corte clásico o moderno, con lavado, secado y acabado a tu gusto.</p>
+                    <div class="price">15€</div>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🎨</div>
+                    <h3>Tinte</h3>
+                    <p>Coloración completa con productos de calidad y asesoramiento.</p>
+                    <div class="price">30€</div>
+                </div>
+                <div class="service-card">
+                    <div class="icon">💇‍♀️</div>
+                    <h3>Peinado</h3>
+                    <p>Peinado para ocasiones especiales, bodas, eventos o el día a día.</p>
+                    <div class="price">20€</div>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🧔</div>
+                    <h3>Barba</h3>
+                    <p>Afeitado clásico con toalla caliente, recorte y perfilado.</p>
+                    <div class="price">10€</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Horario ===== -->
+    <section id="horario">
+        <div class="container">
+            <h2 class="section-title">Horario</h2>
+            <div class="horario-wrapper">
+                <table class="horario-table">
+                    <tr>
+                        <th>Día</th>
+                        <th>Horas</th>
+                    </tr>
+                    <tr>
+                        <td>Lunes a Viernes</td>
+                        <td><span class="hora">10:00 – 14:00</span> y <span class="hora">17:00 – 20:00</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td><span class="hora">10:00 – 14:00</span></td>
+                    </tr>
+                    <tr>
+                        <td>Domingo</td>
+                        <td class="cerrado">Cerrado</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Reserva ===== -->
+    <section id="reserva" class="reserva-section">
+        <div class="container">
+            <h2 class="section-title">Reserva tu cita</h2>
+            <p>¿Listo para un cambio de look? Escríbenos por WhatsApp y te confirmamos la cita en minutos.</p>
+            <!-- NÚMERO DE WHATSAPP: asegúrate de que coincide con el del hero -->
+            <a href="https://wa.me/34000000000?text=Hola%20Corte%20Fino%2C%20quiero%20reservar" class="btn-whatsapp">
+                <span class="whatsapp-icon">📱</span>
+                Reservar por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p><strong>Corte Fino</strong> · Calle Ejemplo, 1 · 28000 Madrid</p>
+            <p class="footer-contact">Teléfono: <a href="tel:+34000000000">+34 000 000 000</a></p>
+            <!-- Actualiza el año manualmente cada enero -->
+            <p class="footer-legal">© 2024 Corte Fino · Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+</html>
